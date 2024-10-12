@@ -1,4 +1,4 @@
-# Movie Theater Ticket Manager
+# Flatdango Movie Theater Ticket Manager
 This project is a simple JavaScript-based web application designed to manage and update movie ticket data for a theater. It works with a JSON data structure containing a list of movies, allowing users to update key information such as ticket availability (tickets_sold) and theater capacity for each movie.
 
 The application is built to simulate ticket management operations where movie details are dynamically updated based on specific conditions, making it useful for learning purposes or basic movie ticket management in a small theater.
@@ -58,20 +58,21 @@ The capacity for each movie is updated as soon as the page loads:
 
 The capacity is randomly generated within the range of 50 to 150 seats, simulating the seating limits of various movie theaters.
 Installation and Usage
-Prerequisites
+
+### Prerequisites
 A web browser (Google Chrome, Mozilla Firefox, etc.)
 Basic understanding of HTML, CSS, and JavaScript.
 Steps
 Clone the repository: First, clone the repository to your local machine.
 
 ```
-git clone https://github.com/your-username/movie-ticket-manager.git
+git clone git@github.com:BettKev/phase-1-code-challenge-3.git
 ```
 Navigate to the directory:
 
 
 ```
-cd movie-ticket-manager
+cd phase-1-code-challenge-3
 ```
 Open the application: Open the index.html file in your preferred browser by double-clicking or dragging it into the browser window.
 
@@ -90,27 +91,38 @@ movie-ticket-manager/
 └── app.js               # JavaScript logic for fetching and updating movie data
 ```
 index.html: Contains the structure for displaying the movies and buttons for ticket purchases.
+
 style.css: Adds basic styling to the UI for better presentation.
+
 app.js: Handles the logic of fetching, updating, and managing the movie data.
 ## Example Workflow
 ### Before ticket purchase:
 
 Movie: "The Giant Gila Monster"
+
 Capacity: 120
+
 Tickets Sold: 0
 
 ### After one ticket purchase:
 
 Movie: "The Giant Gila Monster"
+
 Capacity: 120
+
 Tickets Sold: 1
+
 The app will continuously update this information each time a user clicks the Buy Ticket button.
 
 # Future Improvements
 Local Storage Integration: Save ticket purchases to local storage to retain data across browser sessions.
+
 Backend Integration: Connect to a live database for persistent data management (currently using a static JSON approach).
+
 User Authentication: Add user login functionality to track individual ticket purchases.
+
 Contributing
+
 Contributions are welcome! If you'd like to add new features, fix bugs, or improve the documentation, feel free to submit a pull request.
 
 # License
