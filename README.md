@@ -1,9 +1,9 @@
-#Movie Theater Ticket Manager
+# Movie Theater Ticket Manager
 This project is a simple JavaScript-based web application designed to manage and update movie ticket data for a theater. It works with a JSON data structure containing a list of movies, allowing users to update key information such as ticket availability (tickets_sold) and theater capacity for each movie.
 
 The application is built to simulate ticket management operations where movie details are dynamically updated based on specific conditions, making it useful for learning purposes or basic movie ticket management in a small theater.
 
-#Key Features
+# Key Features
 Dynamic Ticket Update: Automatically sets the number of tickets_sold to 0, indicating all tickets are available for purchase.
 Random Capacity Assignment: The theater's seating capacity (capacity) for each movie is updated to a random value between 50 and 150 to simulate varied theater sizes.
 Interactive Frontend: The app features a simple UI that displays movie details fetched from the JSON dataset, allowing for real-time updates in the DOM when the buy ticket button is clicked.
