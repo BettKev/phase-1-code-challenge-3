@@ -1,184 +1,110 @@
-# Flatdango
+#Movie Theater Ticket Manager
+This project is a simple JavaScript-based web application designed to manage and update movie ticket data for a theater. It works with a JSON data structure containing a list of movies, allowing users to update key information such as ticket availability (tickets_sold) and theater capacity for each movie.
 
-Flatiron Movie Theater is open for business! You will be building out an
-application, Flatdango, that allows a user to purchase movie tickets from the
-theater.
+The application is built to simulate ticket management operations where movie details are dynamically updated based on specific conditions, making it useful for learning purposes or basic movie ticket management in a small theater.
 
-## Demo
+#Key Features
+Dynamic Ticket Update: Automatically sets the number of tickets_sold to 0, indicating all tickets are available for purchase.
+Random Capacity Assignment: The theater's seating capacity (capacity) for each movie is updated to a random value between 50 and 150 to simulate varied theater sizes.
+Interactive Frontend: The app features a simple UI that displays movie details fetched from the JSON dataset, allowing for real-time updates in the DOM when the buy ticket button is clicked.
+Data Structure
+The movie data is stored in a JSON array where each object represents a movie. Below is a breakdown of the attributes for each movie:
 
-Use this gif as an example of how the app should work.
+id (string): A unique identifier for each movie.
+title (string): The name of the movie.
+runtime (string): The duration of the movie in minutes.
+capacity (integer): The maximum number of seats available for the movie.
+showtime (string): The scheduled showtime for the movie.
+tickets_sold (integer): The number of tickets that have already been sold for the show.
+description (string): A brief description of the movie plot.
+poster (string): URL to the movie's poster image.
 
-![Flatdango App Demo](https://curriculum-content.s3.amazonaws.com/phase-1/phase-1-code-challenge-flatdango/flatdango-demo.gif)
+Example JSON Entry
+json
+,,,
+{
+  "id": "1",
+  "title": "The Giant Gila Monster",
+  "runtime": "108",
+  "capacity": 30,
+  "showtime": "04:00PM",
+  "tickets_sold": 20,
+  "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
+  "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
+}
+,,,
 
-> To view in VSCode, right click on the README.md file and select "Open Preview".
+How the Application Works
+Initial Setup
+When the application is loaded, it fetches movie data from the JSON object and displays it on the page.
+Each movie's tickets_sold value is immediately updated to 0, resetting the ticket sales for a new show.
+The capacity of each theater showing the movie is updated to a random value between 50 and 150.
+Buying Tickets
+The app includes a Buy Ticket button for each movie. When a user clicks the button:
+The available tickets are decremented by one.
+The UI is updated to reflect the new number of available tickets.
+The data is synced with the backend (in the case of using a server) to keep the information persistent.
+If there are no tickets left, the button becomes disabled, preventing further ticket purchases.
+Dynamic Updates
+The app dynamically updates the DOM as follows:
 
-## Setup
+The movie's available tickets are shown and updated in real-time when users purchase tickets.
+If the page is refreshed, the current state (such as remaining tickets) is fetched and displayed.
+Data Updates
+The capacity for each movie is updated as soon as the page loads:
 
-Run this command to get the backend started:
+The capacity is randomly generated within the range of 50 to 150 seats, simulating the seating limits of various movie theaters.
+Installation and Usage
+Prerequisites
+A web browser (Google Chrome, Mozilla Firefox, etc.)
+Basic understanding of HTML, CSS, and JavaScript.
+Steps
+Clone the repository: First, clone the repository to your local machine.
 
-```console
-$ json-server --watch db.json
-```
+bash
+Copy code
+git clone https://github.com/your-username/movie-ticket-manager.git
+Navigate to the directory:
 
-Test your server by visiting this route in the browser:
+bash
+Copy code
+cd movie-ticket-manager
+Open the application: Open the index.html file in your preferred browser by double-clicking or dragging it into the browser window.
 
-[http://localhost:3000/films](http://localhost:3000/films)
+View the movies and manage tickets: You will see the list of movies, their runtime, capacity, showtime, description, and poster images. Use the "Buy Ticket" button to simulate a ticket purchase.
 
-Then, open the `index.html` file on your browser to run the application.
+Customization
+Updating Movie Data: You can add or modify movie entries by editing the JSON data within the JavaScript file.
+Capacity Range: If you want to change the random capacity range, you can modify the code responsible for generating random values.
+Project Structure
+bash
+Copy code
+movie-ticket-manager/
+├── index.html           # Main HTML file
+├── style.css            # Styling for the app
+└── app.js               # JavaScript logic for fetching and updating movie data
+index.html: Contains the structure for displaying the movies and buttons for ticket purchases.
+style.css: Adds basic styling to the UI for better presentation.
+app.js: Handles the logic of fetching, updating, and managing the movie data.
+Example Workflow
+Before ticket purchase:
 
-Write your code in the `src/index.js` file. The base URL for your API will be
-[http://localhost:3000](http://localhost:3000).
+Movie: "The Giant Gila Monster"
+Capacity: 120
+Tickets Sold: 0
+After one ticket purchase:
 
-## Core Deliverables
+Movie: "The Giant Gila Monster"
+Capacity: 120
+Tickets Sold: 1
+The app will continuously update this information each time a user clicks the Buy Ticket button.
 
-As a user, I can:
+Future Improvements
+Local Storage Integration: Save ticket purchases to local storage to retain data across browser sessions.
+Backend Integration: Connect to a live database for persistent data management (currently using a static JSON approach).
+User Authentication: Add user login functionality to track individual ticket purchases.
+Contributing
+Contributions are welcome! If you'd like to add new features, fix bugs, or improve the documentation, feel free to submit a pull request.
 
-1. See the first movie's details, including its **poster, title, runtime,
-   showtime, and available tickets** when the page loads. The number of
-   available tickets will need to be derived by subtracting the number of
-   `tickets_sold` from the theater's `capacity`. You will need to make a GET
-   request to the following endpoint to retrieve the film data:
-
-   ```json
-   GET /films/1
-
-   Example Response:
-   {
-     "id": "1",
-     "title": "The Giant Gila Monster",
-     "runtime": "108",
-     "capacity": 30,
-     "showtime": "04:00PM",
-     "tickets_sold": 27,
-     "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
-     "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
-   }
-   ```
-
-2. See a menu of all movies on the left side of the page in the `ul#films`
-   element when the page loads. (_optional_: you can style each film in the list
-   by adding the classes `film item` to each `li` element.) There is a
-   placeholder `li` in the `ul#films` element that is hardcoded in the HTML —
-   feel free to remove that element by editing the HTML file directly, or use
-   JavaScript to remove the placeholder element before populating the list. You
-   will need to make a GET request to the following endpoint to retrieve the
-   film data:
-
-   ```json
-   GET /films
-
-   Example response:
-   [
-      {
-        "id": "1",
-        "title": "The Giant Gila Monster",
-        "runtime": "108",
-        "capacity": 30,
-        "showtime": "04:00PM",
-        "tickets_sold": 27,
-        "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
-        "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
-      },
-      {
-        "id": "2",
-        "title": "Manos: The Hands Of Fate",
-        "runtime": "118",
-        "capacity": 50,
-        "showtime": "06:45PM",
-        "tickets_sold": 44,
-        "description": "A family gets lost on the road and stumbles upon a hidden, underground, devil-worshiping cult led by the fearsome Master and his servant Torgo.",
-        "poster": "https://www.gstatic.com/tv/thumb/v22vodart/47781/p47781_v_v8_ac.jpg"
-      }
-   ]
-   ```
-
-3. Buy a ticket for a movie. After clicking the "Buy Ticket" button, I should
-   see the number of available tickets decreasing on the frontend. I should not
-   be able to buy a ticket if the showing is sold out (if there are 0 tickets
-   available). **A persistence mechanism is needed for this feature. Read the following paragraph for more details**.
-
-   When a ticket is purchased, you need to do the following 
-      - Persist the updated number of `tickets_sold` on
-      the server. Remember, the frontend shows the number of available tickets
-      based on the `tickets_sold` and the `capacity`, so only the `tickets_sold`
-      should be updated on the backend when a ticket is purchased. You will need to
-      make a request that follows this structure:
-
-      ```json
-      PATCH /films/:id
-
-      Request Headers: {
-         Content-Type: application/json
-      }
-
-      Request Body: {
-      "tickets_sold": 28
-      }
-      ----
-      Example Response:
-      {
-         "id": "1",
-         "title": "The Giant Gila Monster",
-         "runtime": "108",
-         "capacity": 30,
-         "showtime": "04:00PM",
-         "tickets_sold": 28,
-         "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
-         "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
-      }
-      ```
-      - POST the new ticket to the tickets endpoint in the database
-      ```json
-      POST /tickets
-      Request Body: {
-         "film_id": "28"
-         "number_of_tickets": 5
-      }
-
-      Example Response:
-      {
-         "id": "1"
-         "film_id": "28"
-         "number_of_tickets": 5
-      }
-      ```
-
-5. Delete a film from the server. Add a delete button next to each film in the
-   `ul#films` menu. When the button is clicked, remove the film from the list
-   and also delete the film on the server:
-
-   ```json
-   DELETE /films/:id
-
-   Example Response:
-   {}
-   ```
-
-6. When a movie is sold out (when there are no available tickets remaining),
-   indicate that the movie is sold out by changing the button text to "Sold
-   Out". Also update the film item in the `ul#films` menu by adding a class of
-   `sold-out` to the film. For reference, here's what the contents of the
-   `ul#films` element should look like with a sold out film:
-
-   ```html
-   <li class="film item">(Title of film)</li>
-   <li class="sold-out film item">(Title of a sold-out film)</li>
-   <li class="film item">(Title of film)</div>
-   ```
-
-### Bonus Deliverables
-
-These bonus deliverables are here if you want an extra challenge and won't
-affect your score. **Make sure to commit your work to save your progress before
-attempting the bonus deliverables!**
-
-1. Click on a movie in the menu to replace the currently displayed movie's
-   details with the new movie's details. Note that you may have to make an
-   additional GET request to access the movie's details.
-
-
-
-
-
-
-
+License
+This project is licensed under the MIT License, allowing anyone to use, modify, and distribute the code as long as they include the original license file in their projects.
