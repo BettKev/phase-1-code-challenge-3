@@ -1,5 +1,8 @@
 body {
-  background-color: #ebebeb;
+  /* background-color: #ebebeb; */
+  background-image: url(./bckg.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .heading {
