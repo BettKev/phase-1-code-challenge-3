@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to fetch movie details
     function getMovieDetails() {
-        fetch('http://localhost:3000/films/1')  // Adjust the URL if needed
+        fetch('http://localhost:3000/films/1')  
             .then(response => response.json())
             .then(movie => {
                 currentMovieId = movie.id; // Store the current movie ID
